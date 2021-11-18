@@ -1,0 +1,10 @@
+@import './../styling/variables.scss';
+
+body {
+  font-family: $railway;
+  padding: 0 25px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
