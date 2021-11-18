@@ -5,7 +5,6 @@ import './nav-bar.scss'
 
 export const NavBar = () => {
   const today = new Date().toDateString()
-  console.log(today)
 
   return (
     <div className="nav-bar">

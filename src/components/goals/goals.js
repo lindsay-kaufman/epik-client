@@ -19,7 +19,7 @@ export const Goals = () => {
   return (
     <div className="goals">
       <div className="Goals">Your Weekly Progress</div>
-      <p>{!data ? 'Goals...' : data.map(item => <div>{item.title}</div>)}</p>
+      <div>{!data ? 'Goals...' : data.map(item => <div key={item.id}>{item.title}</div>)}</div>
     </div>
   )
 }

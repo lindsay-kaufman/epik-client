@@ -11,12 +11,18 @@
     padding: 18px;
   }
 
+  // &__welcome {
+  //   position: absolute;
+  //   top: 10px;
+  //   left: 10px;
+  //   color:
+  // }
   &__wrapper {
     display: flex;
     justify-content: space-between;
     background-color: $dark-green;
     color: white;
-    top: 180px;
+    top: 135px;
     font-size: 20px;
     font-weight: bold;
     font-style: italic;
@@ -24,18 +30,19 @@
   }
 
   &__date {
-    top: 250px;
+    top: 200px;
     font-family: $tangerine;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     color: $light-green;
   }
 
   &__dasies {
     transform: rotate(265deg);
-    max-height: 475px;
+    max-height: 425px;
     position: relative;
-    bottom: 100px;
+    bottom: 130px;
+    left: 2px;
     max-width: 169px;
   }
 

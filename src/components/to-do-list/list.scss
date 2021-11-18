@@ -1,0 +1,65 @@
+@import './../../../styling/variables.scss';
+
+.to-do {
+  &__title {
+    color: $light-green;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid $light-green;
+    padding-bottom: 12px;
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    background-color: $aqua;
+    border-radius: 6px;
+    box-shadow: 1px 2px 5px $grey;
+
+    &-item {
+      padding: 8px;
+      border-top: 2px solid $white;
+
+      &--completed-button {
+        padding: 6px;
+        border-radius: 12px;
+        border: none;
+        background: white;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  fieldset {
+    border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    border: none;
+    background-color: transparent;
+  }
+
+  ::placeholder {
+    color: $dark-green;
+    font-weight: bolder;
+    font-family: $railway;
+    text-transform: capitalize;
+  }
+
+  input[type='checkbox'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    background: $white;
+    border: none;
+    margin-right: 9px;
+  }
+
+  input[type="checkbox"]:checked {
+    background: $yellow;
+  }
+}
