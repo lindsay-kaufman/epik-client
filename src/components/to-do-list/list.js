@@ -7,6 +7,12 @@ import './list.scss'
 export const List = () => {
   const [data, setData] = useState([])
 
+  // const [listItem, setListItem] = useState({
+  //   name: '',
+  //   completed: false,
+  //   user_id: null,
+  // })
+
   useEffect(() => {
     axios({
       url: 'http://localhost:3000/todo/1',
@@ -21,8 +27,10 @@ export const List = () => {
 
   const markItemAsCompleted = e => {
     const data = {
+      id: 1,
       name: e.target.name,
       completed: e.target.checked,
+      user_id: 1
     }
 
     axios({
@@ -33,7 +41,16 @@ export const List = () => {
     })
   }
 
-  const updateListItem = () => {}
+  const addListItem = () => {
+    const listItem = {
+      name: '',
+      completed: false,
+      user_id: 1,
+    }
+
+    setData([...data, listItem])
+  }
+
 
   const initialValues = {
     listItems: [
@@ -52,7 +69,7 @@ export const List = () => {
         {!data
           ? 'Loading to do list...'
           : data.map(item => (
-              <Formik initialValues={initialValues} onSubmit={updateListItem}>
+              <Formik initialValues={initialValues}>
                 {() => (
                   <Form className="to-do__list-item-form">
                     <FieldArray>
@@ -65,12 +82,25 @@ export const List = () => {
                             name={item.name}
                             id={item.id}
                           />
-
-                          <Field
-                            name="name"
-                            placeholder={item.name || ''}
-                            type="text"
-                          />
+                        </fieldset>
+                        <fieldset>
+                          <Field name="name">
+                            {({
+                              field,
+                              form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                            }) => (
+                              <div>
+                                <input
+                                  type="text"
+                                  placeholder={item.name || ''}
+                                  {...field}
+                                  onChange={markItemAsCompleted}
+                                  id={item.id}
+                                  name={item.name}
+                                />
+                              </div>
+                            )}
+                          </Field>
                         </fieldset>
                       </li>
                     </FieldArray>
@@ -79,6 +109,9 @@ export const List = () => {
               </Formik>
             ))}
       </ul>
+      <button className="to-do__add" onClick={addListItem}>
+        +
+      </button>
     </div>
   )
 }

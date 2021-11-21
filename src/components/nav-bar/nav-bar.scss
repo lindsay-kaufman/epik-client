@@ -1,28 +1,22 @@
 @import './../../../styling/variables.scss';
 
 .nav-bar {
-  max-height: 360px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
   text-align: center;
-  &__wrapper,
-  &__date {
-    position: absolute;
-    left: 0;
-    right: 0;
-    padding: 18px;
-  }
+  background-color: $white;
 
-  // &__welcome {
-  //   position: absolute;
-  //   top: 10px;
-  //   left: 10px;
-  //   color:
-  // }
+
   &__wrapper {
     display: flex;
     justify-content: space-between;
+    padding: 18px;
     background-color: $dark-green;
     color: white;
-    top: 135px;
+    top: 0;
     font-size: 20px;
     font-weight: bold;
     font-style: italic;
@@ -35,15 +29,7 @@
     font-size: 40px;
     text-align: center;
     color: $light-green;
-  }
-
-  &__dasies {
-    transform: rotate(265deg);
-    max-height: 425px;
-    position: relative;
-    bottom: 130px;
-    left: 2px;
-    max-width: 169px;
+    padding: 18px 0 12px;
   }
 
   &__menu {

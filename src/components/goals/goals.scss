@@ -1,0 +1,43 @@
+@import './../../../styling/variables.scss';
+
+.goals {
+  &__title {
+    color: $light-green;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid $light-green;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  &__wrapper {
+    width: 100%;
+  }
+
+  &__goal {
+    font-size: 14px;
+    color: $dark-green;
+    text-transform: capitalize;
+  }
+
+  &__calendar {
+    max-width: 60%;
+    float: right;
+
+    &-wrapper {
+      width: 100%;
+    }
+  }
+
+  .grid-container {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 16px;
+  }
+
+  &__weekdays {
+    font-size: 14px;
+    color: $dark-green;
+    margin: 0 6px;
+  }
+}

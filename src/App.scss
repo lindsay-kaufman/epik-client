@@ -1,10 +1,10 @@
 @import './../styling/variables.scss';
 
-body {
+.planner {
   font-family: $railway;
-  padding: 0 25px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
+
+  & > div {
+    padding: 32px;
+  }
+
 }

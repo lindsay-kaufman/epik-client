@@ -7,8 +7,8 @@ export const NavBar = () => {
   const today = new Date().toDateString()
 
   return (
-    <div className="nav-bar">
-      <img className="nav-bar__dasies" src={dasies} alt="dasies" />
+    <nav className="nav-bar">
+      {/* <img className="nav-bar__dasies" src={dasies} alt="dasies" /> */}
       <div className="nav-bar__wrapper">
         <div className="nav-bar__welcome">Welcome, Lindsay</div>
         <button className="nav-bar__menu">
@@ -16,6 +16,6 @@ export const NavBar = () => {
         </button>
       </div>
       <div className="nav-bar__date">{today}</div>
-    </div>
+    </nav>
   )
 }
