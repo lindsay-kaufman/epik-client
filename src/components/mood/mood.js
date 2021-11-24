@@ -8,6 +8,10 @@ export const Mood = () => {
   const [mood, setMood] = useState([])
   const [notes, setNotes] = useState('')
   const [score, setScore] = useState(null)
+  const scores = [1, 2, 3, 4, 5]
+
+  // maybe for week view display a button that opens a modal with scores and notes for the week
+  // need to think of a way to view past notes by date
 
   useEffect(() => {
     axios({
@@ -16,9 +20,14 @@ export const Mood = () => {
       headers: { 'Content-Type': undefined },
     })
       .then(res => {
-        setMood([res.data])
-        setScore(res.data[0].score)
-        setNotes(res.data[0].notes)
+        if (
+          new Date(res.data[0].created_at).toDateString ===
+          new Date(Date.now()).toDateString
+        ) {
+          setMood([res.data])
+          setScore(res.data[0].score)
+          setNotes(res.data[0].notes)
+        }
       })
       .catch(console.error)
   }, [score, notes])
@@ -31,9 +40,9 @@ export const Mood = () => {
     }
 
     if (mood !== []) {
-      const today = new Date(Date.now())
+      const today = new Date(Date.now()).toDateString
       const filteredMoods = mood[0].filter(
-        moods => new Date(moods.created_at) === today
+        moods => new Date(moods.created_at).toDateString === today
       )
 
       if (filteredMoods !== []) {
@@ -66,53 +75,26 @@ export const Mood = () => {
       method: 'PUT',
       headers: { 'Content-Type': undefined },
       data: data,
-    })
-      .then(res => setNotes(res.data.notes))
+    }).then(res => setNotes(res.data.notes))
   }
 
   const notesClassName = classNames('mood__notes', {
-    'has-note': notes !== ''
+    'has-note': notes !== '',
   })
 
   return (
     <div className="mood">
       <div className="mood__title">How's Your Mood?</div>
       <div className="mood__scores">
-        <button
-          className={score === 1 ? 'mood__score-active' : 'mood__score'}
-          id="1"
-          onClick={addScore}
-        >
-          1
-        </button>
-        <button
-          className={score === 2 ? 'mood__score-active' : 'mood__score'}
-          id="2"
-          onClick={addScore}
-        >
-          2
-        </button>
-        <button
-          className={score === 3 ? 'mood__score-active' : 'mood__score'}
-          id="3"
-          onClick={addScore}
-        >
-          3
-        </button>
-        <button
-          className={score === 4 ? 'mood__score-active' : 'mood__score'}
-          id="4"
-          onClick={addScore}
-        >
-          4
-        </button>
-        <button
-          className={score === 5 ? 'mood__score-active' : 'mood__score'}
-          id="5"
-          onClick={addScore}
-        >
-          5
-        </button>
+        {scores.map(num => (
+          <button
+            className={score === num ? 'mood__score-active' : 'mood__score'}
+            id={num}
+            onClick={addScore}
+          >
+            {num}
+          </button>
+        ))}
       </div>
       <form className="mood__notes">
         <textarea

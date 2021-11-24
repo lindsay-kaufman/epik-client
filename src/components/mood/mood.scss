@@ -15,25 +15,20 @@
     padding: 24px 0;
   }
 
-  &__score {
+  &__score,
+  &__score-active {
     color: $white;
-    font-size: 18px;
+    font-size: 22px;
     font-family: $garamond;
     background-color: $aqua;
     border: 1px solid $aqua;
     border-radius: 16px;
     padding: 0 12px;
-    height: 30px;
+    height: 35px;
 
     &-active {
       background-color: $yellow;
-      color: $white;
-      font-size: 18px;
-      font-family: $garamond;
       border: 1px solid $yellow;
-      border-radius: 16px;
-      padding: 0 12px;
-      height: 30px;
     }
   }
 

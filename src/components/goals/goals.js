@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import en from 'dayjs/locale/en'
@@ -7,6 +7,7 @@ import './goals.scss'
 
 export const Goals = () => {
   const [goals, setData] = useState([])
+  // need to decide how to add edit and delete goals
 
   useEffect(() => {
     axios({
