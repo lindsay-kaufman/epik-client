@@ -1,10 +1,10 @@
 @import './../styling/variables.scss';
 
 .planner {
-  font-family: $railway;
+  font-family: $garamond;
 
   & > div {
-    padding: 32px;
+    padding: 20px 32px;
   }
 
 }

@@ -1,16 +1,18 @@
 import React from 'react'
-import dasies from './../../assets/daisys.png'
 import menuIcon from './../../assets/menu.svg'
+import daisyIcon from './../../assets/daisy.png'
 import './nav-bar.scss'
 
 export const NavBar = () => {
   const today = new Date().toDateString()
 
+  // change to say week or month when view switchdes
+  
   return (
     <nav className="nav-bar">
-      {/* <img className="nav-bar__dasies" src={dasies} alt="dasies" /> */}
       <div className="nav-bar__wrapper">
-        <div className="nav-bar__welcome">Welcome, Lindsay</div>
+        <img className="nav-bar__daisy" src={daisyIcon} alt="daisy" />
+        <div className="nav-bar__welcome">Lindsay's Day</div>
         <button className="nav-bar__menu">
           <img src={menuIcon} alt="menu-icon" />
         </button>

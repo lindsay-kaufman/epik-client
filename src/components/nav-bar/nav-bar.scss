@@ -12,28 +12,35 @@
 
   &__wrapper {
     display: flex;
-    justify-content: space-between;
     padding: 18px;
     background-color: $dark-green;
     color: white;
     top: 0;
     font-size: 20px;
-    font-weight: bold;
-    font-style: italic;
     box-shadow: 1px 2px 5px grey;
   }
 
   &__date {
     top: 200px;
-    font-family: $tangerine;
-    font-size: 40px;
+    font-size: 35px;
+    font-style: italic;
     text-align: center;
     color: $light-green;
     padding: 18px 0 12px;
   }
 
+  &__daisy {
+    width: 26px;
+    height: 26px;
+  }
+
+  &__welcome {
+    margin-left: 16px;
+  }
+
   &__menu {
     background: none;
     border: none;
+    margin-left: auto;
   }
 }

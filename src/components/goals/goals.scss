@@ -1,10 +1,11 @@
 @import './../../../styling/variables.scss';
 
 .goals {
+  padding: 25px;
+
   &__title {
     color: $light-green;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 25px;
     border-bottom: 1px solid $light-green;
     padding-bottom: 12px;
     margin-bottom: 12px;
@@ -14,30 +15,60 @@
     width: 100%;
   }
 
-  &__goal {
-    font-size: 14px;
-    color: $dark-green;
-    text-transform: capitalize;
+  button[type='checkbox'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid $aqua;
+    background: $white;
+    font-size: 18px;
+    border-radius: 16px;
+    padding: 1px 6px;
+    height: 14px;
   }
 
-  &__calendar {
-    max-width: 60%;
-    float: right;
+  button[type='checkbox']:checked {
+    border: 1px solid $yellow;
+    background: $yellow;
+  }
 
-    &-wrapper {
-      width: 100%;
+  table {
+    width: 100%;
+    padding: 16px 0;
+    font-family: Georgia, serif;
+  }
+
+  thead, tbody, tr {
+    display: table;
+    width: 100%;
+  }
+
+  tr {
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.25;
+    color: $light-green;
+    text-transform: capitalize;
+    margin: 4px 0;
+  }
+
+  td {
+    width: 10%;
+
+    &:first-child {
+      width: 35%;
     }
   }
 
-  .grid-container {
-    display: flex;
-    justify-content: space-around;
-    margin-left: 16px;
-  }
+  th {
+    font-size: 18px;
+    font-weight: 500;
+    color: $light-green;
+    width: 10%;
 
-  &__weekdays {
-    font-size: 14px;
-    color: $dark-green;
-    margin: 0 6px;
+
+    &:first-child {
+      width: 35%;
+      text-align: left;
+    }
   }
 }

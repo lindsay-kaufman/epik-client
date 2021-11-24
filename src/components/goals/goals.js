@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { useTable } from 'react-table'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import en from 'dayjs/locale/en'
@@ -21,103 +20,74 @@ export const Goals = () => {
       .catch(console.error)
   }, [])
 
-
   dayjs.locale({
     ...en,
     weekStart: 1,
   })
+  const startOfWeek = dayjs().day(7)
 
-  const startOfWeek = dayjs().startOf('week')
-
-  // index of table column === index of weekday
-  // how to change sunday to be index 0
   const weekdays = new Array(7)
     .fill(startOfWeek)
-    .map((day, i) => day.add(i, 'day'))
+    .map((day, i) => day.add(i, 'day').format('dd'))
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: '',
-        accessor: 'goal',
-      },
-      {
-        Header: 'S',
-        accessor: 'sun',
-      },
-      {
-        Header: 'M',
-        accessor: 'm',
-      },
-      {
-        Header: 'T',
-        accessor: 'tu',
-      },
-      {
-        Header: 'W',
-        accessor: 'w',
-      },
-      {
-        Header: 'T',
-        accessor: 'td',
-      },
-      {
-        Header: 'F',
-        accessor: 'f',
-      },
-      {
-        Header: 'S',
-        accessor: 'sat',
-      },
-    ],
-    []
-  )
+  const occurances = new Array(7).fill()
 
-  const Table = ({ columns, data }) => {
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-      useTable({ columns, data: goals })
-
-    return (
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    )
+ // error: Cannot PUT /occurances/2
+  const addGoalOccurance = e => {
+    // const dateAdded = new Date(Date.now())
+    // const timezone = dateAdded.getTimezoneOffset() * 60000
+    // const createdAt = dateAdded - timezone
+    
+    axios({
+      url: `http://localhost:3000/occurances/${e.target.id - 1}`,
+      method: 'POST',
+      headers: { 'Content-Type': undefined },
+    })
+    .then(console.log('occurance added'))
+    .catch()
   }
 
   return (
     <div className="goals">
       <div className="goals__title">Your Weekly Progress</div>
       <div className="goals__wrapper">
-        <Table columns={columns} data={goals} />
-
-        <div>
-          {!goals
-            ? 'Goals...'
-            : goals.map(item => (
-                <div className="goals__goal" key={item.id}>
-                  {item.title}
-                </div>
-              ))}
+        <div className="goals__calendar">
+          <table>
+            <thead>
+            <tr>
+              <th>Goals</th>
+              {weekdays.map((day, i) => {
+                return (
+                  <>
+                    <th key={i}>{day}</th>
+                  </>
+                )
+              })}
+            </tr>
+            </thead>
+            <tbody>
+              {goals.map(goal => {
+                return (
+                  <tr key={goal.id}>
+                    <td>{goal.title}</td>
+                    {occurances.map((i) => {
+                      return (
+                        <td key={i}> 
+                          <button
+                            className="goals__occurance"
+                            type="checkbox"
+                            defaultChecked="false"
+                            id={goal.id}
+                            onClick={addGoalOccurance}
+                          />
+                        </td>
+                      )
+                    })}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

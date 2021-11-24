@@ -7,12 +7,8 @@ import './list.scss'
 export const List = () => {
   const [data, setData] = useState([])
 
-  // const [listItem, setListItem] = useState({
-  //   name: '',
-  //   completed: false,
-  //   user_id: null,
-  // })
-
+  // TODO: wrap placeholder if long text
+  //can't put data as a dependency bc i am getting data in the useEffect so it is continuouslty updating
   useEffect(() => {
     axios({
       url: 'http://localhost:3000/todo/1',
@@ -25,12 +21,36 @@ export const List = () => {
       .catch(console.error)
   }, [])
 
-  const markItemAsCompleted = e => {
+  const onSubmit = e => {
+    e.preventDefault()
+  }
+
+  const addListItem = () => {
+    const listItem = {
+      name: '',
+      completed: false,
+      user_id: 1,
+    }
+
+    axios({
+      url: 'http://localhost:3000/todo',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: listItem,
+    })
+      .then(res => {
+        setData([...data, res.data])
+      })
+      .then(console.log(data))
+      .catch(console.error)
+  }
+
+  const updateListItem = e => {
     const data = {
-      id: 1,
-      name: e.target.name,
+      id: e.target.id,
+      name: e.target.value,
       completed: e.target.checked,
-      user_id: 1
+      user_id: 1,
     }
 
     axios({
@@ -41,16 +61,29 @@ export const List = () => {
     })
   }
 
-  const addListItem = () => {
-    const listItem = {
-      name: '',
-      completed: false,
+  const toggleCompleted = e => {
+    const data = {
+      id: e.target.id,
+      name: e.target.name,
+      completed: e.target.checked,
       user_id: 1,
     }
 
-    setData([...data, listItem])
+    axios({
+      url: `http://localhost:3000/todo/1/${e.target.id}`,
+      method: 'PUT',
+      headers: { 'Content-Type': undefined },
+      data: data,
+    })
   }
 
+  const deleteListItem = e => {
+    axios({
+      url: `http://localhost:3000/todo/1/${e.target.id}`,
+      method: 'DELETE',
+      headers: { 'Content-Type': undefined },
+    })
+  }
 
   const initialValues = {
     listItems: [
@@ -64,12 +97,17 @@ export const List = () => {
 
   return (
     <div className="to-do">
-      <div className="to-do__title">To Do List:</div>
+      <div className="to-do__title-wrapper">
+      <div className="to-do__title">To Do List</div>
+      <button className="to-do__add" onClick={addListItem}>
+        +
+      </button>
+      </div>
       <ul className="to-do__list">
         {!data
           ? 'Loading to do list...'
-          : data.map(item => (
-              <Formik initialValues={initialValues}>
+          : data.map((item, i) => (
+              <Formik initialValues={initialValues} key={i} onSubmit={onSubmit}>
                 {() => (
                   <Form className="to-do__list-item-form">
                     <FieldArray>
@@ -78,7 +116,7 @@ export const List = () => {
                           <input
                             type="checkbox"
                             defaultChecked={item.completed}
-                            onClick={markItemAsCompleted}
+                            onClick={toggleCompleted}
                             name={item.name}
                             id={item.id}
                           />
@@ -87,14 +125,14 @@ export const List = () => {
                           <Field name="name">
                             {({
                               field,
-                              form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                              // form, {values, setXXXX, handleXXXX, dirty, isValid, status, etc.}
                             }) => (
                               <div>
                                 <input
                                   type="text"
                                   placeholder={item.name || ''}
                                   {...field}
-                                  onChange={markItemAsCompleted}
+                                  onChange={updateListItem}
                                   id={item.id}
                                   name={item.name}
                                 />
@@ -102,6 +140,13 @@ export const List = () => {
                             )}
                           </Field>
                         </fieldset>
+                        <button
+                          className="to-do__list-item--delete-button"
+                          onClick={deleteListItem}
+                          id={item.id}
+                        >
+                          -
+                        </button>
                       </li>
                     </FieldArray>
                   </Form>
@@ -109,9 +154,6 @@ export const List = () => {
               </Formik>
             ))}
       </ul>
-      <button className="to-do__add" onClick={addListItem}>
-        +
-      </button>
     </div>
   )
 }
