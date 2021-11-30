@@ -1,0 +1,38 @@
+@import './../../styling/variables.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+
+  &-closed {
+    display: none;
+  }
+  
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    border: 1px solid $light-green;
+    background-color: $white;
+    color: $dark-green;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 0 20%;
+    transform: translate(-50%, -50%);
+
+    &-btn {
+      position: absolute;
+      right: 16px;
+      top: 20px;
+      border: none;
+      background: none;
+      font-size: 20px;
+      color: #a9a9a9;
+    }
+  }
+}

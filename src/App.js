@@ -3,6 +3,7 @@ import { NavBar } from './components/nav-bar/nav-bar'
 import { Goals } from './components/goals/goals'
 import { List } from './components/to-do-list/list'
 import { Mood } from './components/mood/mood'
+import { Meals } from './components/meals/meals'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <List />
       <Goals />
       <Mood />
+      <Meals />
     </div>
   )
 }

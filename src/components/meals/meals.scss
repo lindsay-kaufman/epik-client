@@ -1,16 +1,19 @@
 @import './../../../styling/variables.scss';
 
-.to-do {
+.meals {
+  display: flex;
+  flex-direction: column;
+
   &__title {
     color: $light-green;
     font-size: 25px;
-    align-items: center;
 
     &-wrapper {
       border-bottom: 1px solid $light-green;
       padding-bottom: 12px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
   }
 
@@ -30,27 +33,26 @@
     background-color: $aqua;
     border-radius: 6px;
     box-shadow: 1px 2px 5px $grey;
+  }
 
-    &-item {
-      display: flex;
-      padding: 8px;
-      border-top: 2px solid $white;
+  &__meal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-top: 2px solid $white;
 
-      &--completed-button {
-        padding: 6px;
-        border-radius: 12px;
-        border: none;
-        background: white;
-        margin-right: 8px;
-      }
+    &-edit {
+      border: none;
+      background: none;
+      color: $white;
+      font-size: 30px;
+      margin-right: 12px;
+    }
 
-      &--delete-button {
-        background: none;
-        border: none;
-        font-size: 22px;
-        color: $white;
-        margin: 0 16px 0 auto;
-      }
+    &-name {
+      margin: 8px 16px;
+      color: $dark-green;
     }
   }
 
@@ -59,43 +61,49 @@
     display: flex;
     align-items: center;
     padding: 4px 8px;
+    margin: 0;
 
     input {
-      font-size: 16px;
+      font-size: 18px;
       font-family: $garamond;
       text-transform: capitalize;
     }
   }
 
   input {
-    color: $dark-green;
     border: none;
     background-color: transparent;
+  }
+
+  input[type='text'] {
+    color: $dark-green;
+    flex-wrap: wrap;
+    font-size: 20px;
   }
 
   ::placeholder {
     color: $white;
     font-family: $garamond;
+    font-size: 20px;
     text-transform: capitalize;
+  }
+}
+
+.meal-modal {
+  fieldset {
+    margin: 12px auto;
   }
 
   input[type='text'] {
-    margin-left: -10px;
+    color: $dark-green;
     flex-wrap: wrap;
+    font-size: 16px;
+    padding: 8px 0;
+    text-transform: none;
+    width: 100%;
   }
 
-  input[type='checkbox'] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 10px;
-    background: $white;
-    border: none;
-    margin-right: 9px;
-  }
-
-  input[type='checkbox']:checked {
-    background: $yellow;
+  ::placeholder {
+    font-size: 16px;
   }
 }

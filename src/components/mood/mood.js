@@ -12,6 +12,7 @@ export const Mood = () => {
 
   // maybe for week view display a button that opens a modal with scores and notes for the week
   // need to think of a way to view past notes by date
+  // add today's date into query for get request
 
   useEffect(() => {
     axios({
@@ -20,13 +21,17 @@ export const Mood = () => {
       headers: { 'Content-Type': undefined },
     })
       .then(res => {
-        if (
-          new Date(res.data[0].created_at).toDateString ===
-          new Date(Date.now()).toDateString
-        ) {
-          setMood([res.data])
-          setScore(res.data[0].score)
-          setNotes(res.data[0].notes)
+        const filteredData = res.data.filter(
+          d =>
+            new Date(d.created_at).toDateString() ===
+            new Date(Date.now()).toDateString()
+        )
+
+        if (filteredData.length) {
+          const currentMood = filteredData.length - 1
+          setMood([filteredData[currentMood]])
+          setScore(filteredData[currentMood].score)
+          setNotes(filteredData[currentMood].notes)
         }
       })
       .catch(console.error)
@@ -35,23 +40,16 @@ export const Mood = () => {
   const addScore = e => {
     const data = {
       notes: notes,
-      score: e.target.id,
+      score: e.target.id || score,
       user_id: 1,
     }
 
-    if (mood !== []) {
-      const today = new Date(Date.now()).toDateString
-      const filteredMoods = mood[0].filter(
-        moods => new Date(moods.created_at).toDateString === today
-      )
-
-      if (filteredMoods !== []) {
-        axios({
-          url: `http://localhost:3000/mood/1/${mood[0][0].id}`,
-          method: 'DELETE',
-          headers: { 'Content-Type': undefined },
-        })
-      }
+    if (mood.length) {
+      axios({
+        url: `http://localhost:3000/mood/1/${mood[0].id}`,
+        method: 'DELETE',
+        headers: { 'Content-Type': undefined },
+      })
     }
 
     axios({
@@ -63,16 +61,18 @@ export const Mood = () => {
   }
 
   const submitNote = e => {
+    const method = mood.length ? 'PUT' : 'POST'
+
     const data = {
       notes: e.target.value,
       score: score,
       user_id: 1,
-      id: mood[0][0].id,
+      id: mood.length && mood[0].id,
     }
 
     axios({
-      url: `http://localhost:3000/mood/1/${mood[0][0].id}`,
-      method: 'PUT',
+      url: `http://localhost:3000/mood/1/${mood[0].id}`,
+      method: method,
       headers: { 'Content-Type': undefined },
       data: data,
     }).then(res => setNotes(res.data.notes))
@@ -91,6 +91,7 @@ export const Mood = () => {
             className={score === num ? 'mood__score-active' : 'mood__score'}
             id={num}
             onClick={addScore}
+            key={num}
           >
             {num}
           </button>

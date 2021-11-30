@@ -41,7 +41,6 @@ export const List = () => {
       .then(res => {
         setData([...data, res.data])
       })
-      .then(console.log(data))
       .catch(console.error)
   }
 
@@ -107,7 +106,10 @@ export const List = () => {
         {!data
           ? 'Loading to do list...'
           : data.map((item, i) => (
-              <Formik initialValues={initialValues} key={i} onSubmit={onSubmit}>
+              <Formik 
+              initialValues={initialValues} 
+              key={i} 
+              onSubmit={onSubmit}>
                 {() => (
                   <Form className="to-do__list-item-form">
                     <FieldArray>
@@ -130,11 +132,12 @@ export const List = () => {
                               <div>
                                 <input
                                   type="text"
-                                  placeholder={item.name || ''}
+                                  placeholder=' '
                                   {...field}
                                   onChange={updateListItem}
                                   id={item.id}
                                   name={item.name}
+                                  defaultValue={item.name}
                                 />
                               </div>
                             )}
