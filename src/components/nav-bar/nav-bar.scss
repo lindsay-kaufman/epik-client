@@ -12,11 +12,14 @@
 
   &__wrapper {
     display: flex;
-    padding: 18px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
     background-color: $dark-green;
     color: white;
     top: 0;
-    font-size: 20px;
+    font-size: 22px;
+    font-style: italic;
     box-shadow: 1px 2px 5px grey;
   }
 
@@ -30,17 +33,20 @@
   }
 
   &__daisy {
-    width: 26px;
-    height: 26px;
+    width: 40px;
+    height: 40px;
   }
 
   &__welcome {
-    margin-left: 8px;
+    text-transform: uppercase;
   }
 
   &__menu {
     background: none;
     border: none;
-    margin-left: auto;
+
+    img {
+      height: 30px;
+    }
   }
 }
