@@ -3,8 +3,11 @@
 .meals {
   display: flex;
   flex-direction: column;
+  font-family: Georgia, serif;
+
 
   &__title {
+    font-family: $garamond;
     color: $light-green;
     font-size: 25px;
 

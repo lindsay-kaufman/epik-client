@@ -21,11 +21,13 @@ export const Meals = () => {
           new Date(Date.now()).toDateString()
       )
       if (filteredData.length) {
-        setMeals([filteredData])
+        setMeals(filteredData)
       }
     })
   }, [])
 
+
+  
   return (
     <div className="meals">
       <div className="meals__title-wrapper">
@@ -40,7 +42,7 @@ export const Meals = () => {
             <p className="meals__meal-name">Pancakes...</p>
           </li>
         ) : (
-          meals[0].map(meal => (
+          meals.map(meal => (
             <li className="meals__meal" key={meal.id}>
               <p className="meals__meal-name">{meal.name}</p>
               <button
@@ -60,7 +62,7 @@ export const Meals = () => {
         isOpen={isEditModalOpen}
         onClose={() => {
           setEditModalOpen(false)
-          setEditItem({ name: '', notes: '' })
+          setEditItem({ name: '', notes: '', id: null})
         }}
         editItem={editItem}
       />

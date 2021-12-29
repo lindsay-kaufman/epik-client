@@ -1,10 +1,12 @@
 @import './../../../styling/variables.scss';
 
-.to-do {
+.activities {
+  display: flex;
+  flex-direction: column;
+  color: $light-green;
+
   &__title {
-    color: $light-green;
     font-size: 25px;
-    align-items: center;
 
     &-wrapper {
       border-bottom: 1px solid $light-green;
@@ -13,16 +15,6 @@
       justify-content: space-between;
       align-items: center;
     }
-  }
-
-  &__add {
-    border: 1px solid $yellow;
-    background-color: $yellow;
-    font-size: 20px;
-    color: $white;
-    border-radius: 16px;
-    width: 25px;
-    height: 25px;
   }
 
   &__list {
@@ -34,23 +26,21 @@
 
     &-item {
       display: flex;
+      align-items: center;
       padding: 8px;
       border-top: 2px solid $white;
 
-      &--completed-button {
-        padding: 6px;
-        border-radius: 12px;
-        border: none;
-        background: white;
-        margin-right: 8px;
-      }
-
       &--delete-button {
-        background: none;
-        border: none;
-        font-size: 22px;
+        border: 1px solid $yellow;
+        background-color: $yellow;
+        font-size: 20px;
         color: $white;
-        margin: 0 16px 0 auto;
+        border-radius: 16px;
+        width: 20px;
+        height: 20px;
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
       }
     }
   }
@@ -85,18 +75,24 @@
     flex-wrap: wrap;
   }
 
-  input[type='checkbox'] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 10px;
-    background: $white;
-    border: none;
-    margin-right: 9px;
-  }
+  // &__activity {
+  //   display: flex;
+  //   align-items: center;
+  //   text-transform: capitalize;
+  //   width: 100%;
+  //   border-bottom: 1px solid $aqua;
 
-  input[type='checkbox']:checked {
-    background: $yellow;
-  }
+  //   &-edit {
+  //     border: 1px solid $yellow;
+  //     background-color: $yellow;
+  //     font-size: 20px;
+  //     color: $white;
+  //     border-radius: 16px;
+  //     width: 20px;
+  //     height: 20px;
+  //     margin-right: 20px;
+  //     display: flex;
+  //     align-items: center;
+  //   }
+  // }
 }
