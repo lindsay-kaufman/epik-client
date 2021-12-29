@@ -2,6 +2,7 @@
 
 .meal-modal {
   min-width: 300px;
+  max-height: 250px;
 
   &__title {
     font-size: 20px;
@@ -20,7 +21,7 @@
     color: $dark-green;
   }
 
-  &__btn, &__btn-delete {
+  &__btn, &__btn-delete, &__btn-update {
     border: none;
     border-radius: 12px;
     background-color: $yellow;
@@ -36,8 +37,14 @@
     }
   }
 
+  &__btn-update {
+    margin-left: 120px;
+  }
+
   &__btn-delete {
-    margin-left: 30px;
+    margin-left: 50px;
+    position: relative;
+    bottom: 34px;
   }
 }
 

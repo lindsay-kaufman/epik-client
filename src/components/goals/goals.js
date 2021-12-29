@@ -33,19 +33,19 @@ export const Goals = () => {
 
   const occurances = new Array(7).fill()
 
- // error: Cannot PUT /occurances/2
+  // error: Cannot PUT /occurances/2
   const addGoalOccurance = e => {
     // const dateAdded = new Date(Date.now())
     // const timezone = dateAdded.getTimezoneOffset() * 60000
     // const createdAt = dateAdded - timezone
-    
+
     axios({
       url: `http://localhost:3000/occurances/${e.target.id - 1}`,
       method: 'POST',
       headers: { 'Content-Type': undefined },
     })
-    .then(console.log('occurance added'))
-    .catch()
+      .then(console.log('occurance added'))
+      .catch()
   }
 
   return (
@@ -55,38 +55,30 @@ export const Goals = () => {
         <div className="goals__calendar">
           <table>
             <thead>
-            <tr>
-              <th>Goals</th>
-              {weekdays.map((day, i) => {
-                return (
-                  <>
-                    <th key={i}>{day}</th>
-                  </>
-                )
-              })}
-            </tr>
+              <tr>
+                <th>Goals</th>
+                {weekdays.map((day, i) => (
+                  <th key={i}>{day}</th>
+                ))}
+              </tr>
             </thead>
             <tbody>
-              {goals.map(goal => {
-                return (
-                  <tr key={goal.id}>
-                    <td>{goal.title}</td>
-                    {occurances.map((i) => {
-                      return (
-                        <td key={i}> 
-                          <button
-                            className="goals__occurance"
-                            type="checkbox"
-                            defaultChecked="false"
-                            id={goal.id}
-                            onClick={addGoalOccurance}
-                          />
-                        </td>
-                      )
-                    })}
-                  </tr>
-                )
-              })}
+              {goals.map((goal, i) => (
+                <tr key={i}>
+                  <td>{goal.title}</td>
+                  {occurances.map(i => (
+                    <td key={i}>
+                      <button
+                        className="goals__occurance"
+                        type="checkbox"
+                        defaultChecked="false"
+                        id={goal.id}
+                        onClick={addGoalOccurance}
+                      />
+                    </td>
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

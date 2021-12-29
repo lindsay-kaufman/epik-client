@@ -8,8 +8,8 @@ export const List = () => {
   const [data, setData] = useState([])
 
   // TODO: wrap placeholder if long text
-  //can't put data as a dependency bc i am getting data in the useEffect so it is continuouslty updating
-  useEffect(() => {
+
+  const getToDoList = () => {
     axios({
       url: 'http://localhost:3000/todo/1',
       method: 'GET',
@@ -19,6 +19,10 @@ export const List = () => {
         setData(res.data)
       })
       .catch(console.error)
+  }
+
+  useEffect(() => {
+    getToDoList()
   }, [])
 
   const onSubmit = e => {
@@ -38,10 +42,7 @@ export const List = () => {
       headers: { 'Content-Type': 'application/json' },
       data: listItem,
     })
-      .then(res => {
-        setData([...data, res.data])
-      })
-      .catch(console.error)
+      .then(() => getToDoList())
   }
 
   const updateListItem = e => {
@@ -57,7 +58,7 @@ export const List = () => {
       method: 'PUT',
       headers: { 'Content-Type': undefined },
       data: data,
-    })
+    }).then(() => getToDoList())
   }
 
   const toggleCompleted = e => {
@@ -73,7 +74,7 @@ export const List = () => {
       method: 'PUT',
       headers: { 'Content-Type': undefined },
       data: data,
-    })
+    }).then(() => getToDoList())
   }
 
   const deleteListItem = e => {
@@ -81,7 +82,7 @@ export const List = () => {
       url: `http://localhost:3000/todo/1/${e.target.id}`,
       method: 'DELETE',
       headers: { 'Content-Type': undefined },
-    })
+    }).then(() => getToDoList())
   }
 
   const initialValues = {
@@ -97,19 +98,16 @@ export const List = () => {
   return (
     <div className="to-do">
       <div className="to-do__title-wrapper">
-      <div className="to-do__title">To Do List</div>
-      <button className="to-do__add" onClick={addListItem}>
-        +
-      </button>
+        <div className="to-do__title">To Do List</div>
+        <button className="to-do__add" onClick={addListItem}>
+          +
+        </button>
       </div>
       <ul className="to-do__list">
         {!data
           ? 'Loading to do list...'
           : data.map((item, i) => (
-              <Formik 
-              initialValues={initialValues} 
-              key={i} 
-              onSubmit={onSubmit}>
+              <Formik initialValues={initialValues} key={i} onSubmit={onSubmit}>
                 {() => (
                   <Form className="to-do__list-item-form">
                     <FieldArray>
@@ -132,7 +130,7 @@ export const List = () => {
                               <div>
                                 <input
                                   type="text"
-                                  placeholder=' '
+                                  placeholder=" "
                                   {...field}
                                   onChange={updateListItem}
                                   id={item.id}

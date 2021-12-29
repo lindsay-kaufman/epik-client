@@ -7,7 +7,7 @@ import './activities.scss'
 export const Activites = () => {
   const [activities, setActivites] = useState([])
 
-  useEffect(() => {
+  const getActivities = () => {
     axios({
       url: 'http://localhost:3000/activity/1',
       method: 'GET',
@@ -22,6 +22,10 @@ export const Activites = () => {
         setActivites(filteredData)
       }
     })
+  }
+
+  useEffect(() => {
+    getActivities()
   }, [])
 
   const addActivity = () => {
@@ -37,6 +41,7 @@ export const Activites = () => {
       headers: { 'Content-Type': 'application/json' },
       data: listItem,
     })
+      .then(() => getActivities())
       .then(res => {
         setActivites([...activities, res.data])
       })
@@ -55,15 +60,15 @@ export const Activites = () => {
       method: 'PUT',
       headers: { 'Content-Type': undefined },
       data: data,
-    })
+    }).then(() => getActivities())
   }
 
-  const onDelete = activity => {
+  const onDelete = e => {
     axios({
-      url: `http://localhost:3000/activity/1/${activity.id}`,
+      url: `http://localhost:3000/activity/1/${e.target.id}`,
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
-    })
+    }).then(() => getActivities())
   }
 
   const initialValues = {
@@ -77,10 +82,10 @@ export const Activites = () => {
   return (
     <div className="activities">
       <div className="activities__title-wrapper">
-      <div className="activities__title">What Did You Do Today?</div>
-      <button className="to-do__add" onClick={addActivity}>
-        +
-      </button>
+        <div className="activities__title">What Did You Do Today?</div>
+        <button className="to-do__add" onClick={addActivity}>
+          +
+        </button>
       </div>
       <ul className="activities__list">
         {!activities

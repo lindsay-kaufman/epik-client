@@ -15,6 +15,7 @@ export const AddMealModal = ({ isOpen, onClose, className, editItem }) => {
   }
 
   const onUpdate = (item, values) => {
+    console.log('update')
     axios({
       url: `http://localhost:3000/meals/1/${item.id}`,
       method: 'PUT',
@@ -23,16 +24,16 @@ export const AddMealModal = ({ isOpen, onClose, className, editItem }) => {
         name: values.name || item.name,
         notes: values.notes || item.notes,
       },
-    }).then(onClose())
+    }).then(() => onClose())
   }
 
-  const onCreate = (values) => {
+  const onCreate = values => {
     axios({
       url: 'http://localhost:3000/meals/',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       data: values,
-    })
+    }).then(() => onClose())
   }
 
   const onDelete = () => {
@@ -40,11 +41,9 @@ export const AddMealModal = ({ isOpen, onClose, className, editItem }) => {
       url: `http://localhost:3000/meals/1/${editItem.id}`,
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
-    })
+    }).then(() => onClose())
   }
 
-  console.log(isEditing, editItem)
-  
   return (
     <CustomModal className={className} isOpen={isOpen} onClose={onClose}>
       <div className="meal-modal">
@@ -57,9 +56,9 @@ export const AddMealModal = ({ isOpen, onClose, className, editItem }) => {
         </div>
         <Formik
           initialValues={initialValues}
-          onSubmit={values => (
+          onSubmit={values =>
             isEditing ? onUpdate(editItem, values) : onCreate(values)
-            )}
+          }
         >
           {props => (
             <Form className="meal-modal__add-item-form">
@@ -84,21 +83,22 @@ export const AddMealModal = ({ isOpen, onClose, className, editItem }) => {
                 />
               </fieldset>
               <div className="meal-modal__btn-wrapper">
-                <button
-                  className="meal-modal__btn"
-                  type="submit"
-                >
+                <button className={`meal-modal__btn${isEditing ? '-update' : ''}`} type="submit">
                   {isEditing ? 'Update' : 'Add'}
                 </button>
-                {isEditing && (
-                  <button className="meal-modal__btn-delete" onClick={onDelete}>
-                    Delete
-                  </button>
-                )}
               </div>
             </Form>
           )}
         </Formik>
+        {isEditing && (
+          <button
+            className="meal-modal__btn-delete"
+            type="button"
+            onClick={onDelete}
+          >
+            Delete
+          </button>
+        )}
       </div>
     </CustomModal>
   )
