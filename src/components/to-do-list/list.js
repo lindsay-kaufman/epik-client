@@ -98,7 +98,7 @@ export const List = () => {
   return (
     <div className="to-do">
       <div className="to-do__title-wrapper">
-        <div className="to-do__title">To Do List</div>
+        <div className="to-do__title">Your To Do's</div>
         <button className="to-do__add" onClick={addListItem}>
           +
         </button>
@@ -112,7 +112,7 @@ export const List = () => {
                   <Form className="to-do__list-item-form">
                     <FieldArray>
                       <li className="to-do__list-item" key={item.id}>
-                        <fieldset>
+                        <fieldset className="to-do__list-fieldset">
                           <input
                             type="checkbox"
                             defaultChecked={item.completed}
@@ -121,7 +121,7 @@ export const List = () => {
                             id={item.id}
                           />
                         </fieldset>
-                        <fieldset>
+                        <fieldset className="to-do__list-fieldset">
                           <Field name="name">
                             {({
                               field,

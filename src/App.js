@@ -2,9 +2,7 @@ import './App.scss'
 import { NavBar } from './components/nav-bar/nav-bar'
 import { Goals } from './components/goals/goals'
 import { List } from './components/to-do-list/list'
-import { Mood } from './components/mood/mood'
-import { Meals } from './components/meals/meals'
-import { Activites } from './components/activities/activities'
+import { Actions} from './components/actions/actions'
 
 function App() {
 
@@ -33,9 +31,7 @@ function App() {
       <NavBar />
       <List />
       <Goals />
-      <Activites />
-      <Mood />
-      <Meals />
+      <Actions />
     </div>
   )
 }

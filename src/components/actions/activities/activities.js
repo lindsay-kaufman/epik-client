@@ -83,9 +83,6 @@ export const Activites = () => {
     <div className="activities">
       <div className="activities__title-wrapper">
         <div className="activities__title">What Did You Do Today?</div>
-        <button className="to-do__add" onClick={addActivity}>
-          +
-        </button>
       </div>
       <ul className="activities__list">
         {!activities
@@ -131,6 +128,9 @@ export const Activites = () => {
               </Formik>
             ))}
       </ul>
+      <button className="activities__add" onClick={addActivity}>
+          +
+        </button>
     </div>
   )
 }

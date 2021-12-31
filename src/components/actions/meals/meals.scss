@@ -1,61 +1,62 @@
-@import './../../../styling/variables.scss';
+@import './../../../../styling/variables.scss';
 
 .meals {
   display: flex;
   flex-direction: column;
-  font-family: Georgia, serif;
-
+  font-family: $bebas;
+  padding-bottom: 20px;
 
   &__title {
-    font-family: $garamond;
-    color: $light-green;
+    color: $reef;
     font-size: 25px;
-
-    &-wrapper {
-      border-bottom: 1px solid $light-green;
-      padding-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    padding-bottom: 12px;
+    text-align: center;
   }
 
   &__add {
-    border: 1px solid $yellow;
-    background-color: $yellow;
+    border: 1px solid $reef;
+    background-color: $reef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     color: $white;
     border-radius: 16px;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
+    margin-left: 7px;
   }
 
   &__list {
-    list-style: none;
+    list-style: disc;
     padding-left: 0;
-    background-color: $aqua;
+    background-color: transparent;
     border-radius: 6px;
-    box-shadow: 1px 2px 5px $grey;
   }
 
   &__meal {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 8px;
-    border-top: 2px solid $white;
 
     &-edit {
-      border: none;
-      background: none;
-      color: $white;
+      border: 1px solid $reef;
+      background-color: $reef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 30px;
+      color: $white;
+      border-radius: 16px;
+      width: 20px;
+      height: 20px;
       margin-right: 12px;
     }
 
     &-name {
       margin: 8px 16px;
-      color: $dark-green;
+      color: $reef;
+      font-size: 20px;
     }
   }
 
@@ -68,7 +69,6 @@
 
     input {
       font-size: 18px;
-      font-family: $garamond;
       text-transform: capitalize;
     }
   }
@@ -79,14 +79,13 @@
   }
 
   input[type='text'] {
-    color: $dark-green;
+    color: $reef;
     flex-wrap: wrap;
     font-size: 20px;
   }
 
   ::placeholder {
-    color: $white;
-    font-family: $garamond;
+    color: $reef;
     font-size: 20px;
     text-transform: capitalize;
   }
@@ -98,15 +97,16 @@
   }
 
   input[type='text'] {
-    color: $dark-green;
+    color: $reef;
     flex-wrap: wrap;
-    font-size: 16px;
+    font-size: 20px;
     padding: 8px 0;
     text-transform: none;
     width: 100%;
   }
 
   ::placeholder {
-    font-size: 16px;
+    font-size: 20px;
+    color: $reef;
   }
 }

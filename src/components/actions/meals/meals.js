@@ -8,6 +8,7 @@ export const Meals = () => {
   const [meals, setMeals] = useState([])
   const [isEditModalOpen, setEditModalOpen] = useState(false)
   const [editItem, setEditItem] = useState({ name: '', notes: '', id: null })
+  const hasMeals = meals.length > 0
 
   useEffect(() => {
     axios({
@@ -26,45 +27,61 @@ export const Meals = () => {
     })
   }, [])
 
-
-  
   return (
     <div className="meals">
-      <div className="meals__title-wrapper">
-        <div className="meals__title">What Did You Eat Today?</div>
-        <button className="meals__add" onClick={() => setEditModalOpen(true)}>
-          +
-        </button>
-      </div>
+      <div className="meals__title">What Did You Eat Today?</div>
       <ul className="meals__list">
-        {!meals.length ? (
+        {!hasMeals ? (
           <li className="meals__meal">
+            <button
+              className="meals__add"
+              onClick={() => setEditModalOpen(true)}
+            >
+              +
+            </button>
             <p className="meals__meal-name">Pancakes...</p>
           </li>
         ) : (
           meals.map(meal => (
             <li className="meals__meal" key={meal.id}>
-              <p className="meals__meal-name">{meal.name}</p>
               <button
                 className="meals__meal-edit"
                 onClick={() => {
-                  setEditItem({ name: meal.name, notes: meal.notes, id: meal.id })
+                  setEditItem({
+                    name: meal.name,
+                    notes: meal.notes,
+                    id: meal.id,
+                  })
                   setEditModalOpen(true)
                 }}
                 id={meal.id}
-              >-</button>
+              >
+                -
+              </button>
+              <p className="meals__meal-name">{meal.name}</p>
             </li>
           ))
         )}
       </ul>
+      {hasMeals && (
+        <button className="meals__add" onClick={() => setEditModalOpen(true)}>
+          +
+        </button>
+      )}
+
       <AddMealModal
         className="meals__edit-modal"
         isOpen={isEditModalOpen}
         onClose={() => {
           setEditModalOpen(false)
-          setEditItem({ name: '', notes: '', id: null})
+          setEditItem({ name: '', notes: '', id: null })
         }}
         editItem={editItem}
+        onMealAdded={meal => {
+          if (meal) {
+            // do get request
+          }
+        }}
       />
     </div>
   )

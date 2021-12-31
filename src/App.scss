@@ -1,10 +1,14 @@
 @import './../styling/variables.scss';
 
 .planner {
-  font-family: $garamond;
+  font-family: $bebas;
+  background-image: linear-gradient(to top left, $reef, $mist 95%);
 
   & > div {
-    padding: 20px 32px;
+    padding: 20px 20px 0;
   }
 
+  & > .actions {
+    padding: 0;
+  }
 }

@@ -1,11 +1,11 @@
 import React from 'react'
-import { CustomModal } from './../../../modal/modal'
+import { CustomModal } from './../../../../modal/modal'
 import { Formik, Form } from 'formik'
 import axios from 'axios'
 
 import './meal-modal.scss'
 
-export const AddMealModal = ({ isOpen, onClose, className, editItem }) => {
+export const AddMealModal = ({ isOpen, onClose, className, editItem, onMealAdded }) => {
   const isEditing = editItem.name !== '' || editItem.notes !== ''
 
   const initialValues = {

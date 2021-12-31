@@ -2,12 +2,13 @@
 
 .to-do {
   &__title {
-    color: $light-green;
-    font-size: 25px;
+    color: $white;
+    font-size: 18px;
+    font-weight: bold;
     align-items: center;
+    margin-right: 10px;
 
     &-wrapper {
-      border-bottom: 1px solid $light-green;
       padding-bottom: 12px;
       display: flex;
       justify-content: space-between;
@@ -16,32 +17,35 @@
   }
 
   &__add {
-    border: 1px solid $yellow;
-    background-color: $yellow;
-    font-size: 20px;
-    color: $white;
+    border: 1px solid $mist;
+    background-color: $mist;
+    font-size: 18px;
+    color: $reef;
     border-radius: 16px;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__list {
     list-style: none;
     padding-left: 0;
-    background-color: $aqua;
-    border-radius: 6px;
-    box-shadow: 1px 2px 5px $grey;
 
     &-item {
       display: flex;
       padding: 8px;
-      border-top: 2px solid $white;
+      background-image: linear-gradient(to left, $reef, $mist);
+      border-radius: 16px;
+      margin: 12px 0;
+
 
       &--completed-button {
         padding: 6px;
         border-radius: 12px;
         border: none;
-        background: white;
+        background: $teal;
         margin-right: 8px;
       }
 
@@ -53,30 +57,34 @@
         margin: 0 16px 0 auto;
       }
     }
-  }
 
-  fieldset {
-    border: none;
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-
-    input {
-      font-size: 16px;
-      font-family: $garamond;
-      text-transform: capitalize;
+    &-fieldset {
+      border: none;
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      background-color: transparent;
+  
+      input {
+        font-size: 16px;
+        font-family: $bebas;
+        text-transform: capitalize;
+      }
     }
   }
 
+
+
   input {
-    color: $dark-green;
+    color: $white;
     border: none;
     background-color: transparent;
+    font-family: $bebas;
   }
 
   ::placeholder {
-    color: $white;
-    font-family: $garamond;
+    color: $highlight;
+    font-family: $bebas;
     text-transform: capitalize;
   }
 
@@ -91,12 +99,12 @@
     width: 12px;
     height: 12px;
     border-radius: 10px;
-    background: $white;
+    background: $highlight;
     border: none;
     margin-right: 9px;
   }
 
   input[type='checkbox']:checked {
-    background: $yellow;
+    background: $reef;
   }
 }

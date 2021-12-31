@@ -1,52 +1,31 @@
 @import './../../../styling/variables.scss';
 
 .nav-bar {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
   text-align: center;
-  background-color: $white;
-
+  font-family: 'Bebas Neue';
+  font-weight: bold;
 
   &__wrapper {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: $dark-green;
-    color: white;
+    color: $white;
     top: 0;
-    font-size: 22px;
-    font-style: italic;
-    box-shadow: 1px 2px 5px grey;
+    font-size: 28px;
   }
 
   &__date {
     top: 200px;
-    font-size: 35px;
+    font-size: 20px;
     font-style: italic;
-    text-align: center;
-    color: $light-green;
-    padding: 18px 0 12px;
+    color: $white;
+    padding: 18px;
+    border-bottom: 1px solid $white;
+    width: fit-content;
   }
 
-  &__daisy {
-    width: 40px;
-    height: 40px;
-  }
-
-  &__welcome {
+  &__title {
     text-transform: uppercase;
-  }
-
-  &__menu {
-    background: none;
-    border: none;
-
-    img {
-      height: 30px;
-    }
   }
 }

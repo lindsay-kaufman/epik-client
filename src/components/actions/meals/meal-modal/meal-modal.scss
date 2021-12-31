@@ -1,13 +1,15 @@
-@import './../../../../styling/variables.scss';
+@import './../../../../../styling/variables.scss';
 
 .meal-modal {
   min-width: 300px;
   max-height: 250px;
+  background-color: $mist;
 
   &__title {
-    font-size: 20px;
+    font-size: 25px;
     padding: 8px;
-    color: $light-green;
+    color: $reef;
+    margin-bottom: 20px;
   }
 
   textarea {
@@ -16,18 +18,18 @@
     margin: 0;
     width: 100%;
     padding: 8px 0;
-    font-size: 16px;
-    font-family: $garamond;
-    color: $dark-green;
+    font-size: 20px;
+    font-family: $bebas;
+    color: $reef;
   }
 
   &__btn, &__btn-delete, &__btn-update {
     border: none;
     border-radius: 12px;
-    background-color: $yellow;
+    background-color: $reef;
     color: $white;
-    font-size: 16px;
-    padding: 4px 20px;
+    font-size: 18px;
+    padding: 4px 70px;
     margin-top: 8px;
 
     &-wrapper {
@@ -50,16 +52,18 @@
 
 fieldset,
 textarea {
-  background-color: $aqua;
+  background-color: $highlight;
   border: none;
   border-radius: 8px;
   display: flex;
   align-items: center;
   padding: 4px 8px;
   font-size: 14px;
+  color: $reef;
 }
 
 input {
   font-size: 18px;
-  font-family: $garamond;
+  font-family: $bebas;
+  color: $reef;
 }

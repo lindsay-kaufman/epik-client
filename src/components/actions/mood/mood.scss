@@ -1,11 +1,11 @@
-@import './../../../styling/variables.scss';
+@import './../../../../styling/variables.scss';
 
 .mood {
   &__title {
-    color: $light-green;
+    color: $reef;
     font-size: 25px;
     align-items: center;
-    border-bottom: 1px solid $light-green;
+    text-align: center;
     padding-bottom: 12px;
   }
 
@@ -17,18 +17,19 @@
 
   &__score,
   &__score-active {
-    color: $white;
+    color: $reef;
     font-size: 22px;
-    font-family: $garamond;
-    background-color: $aqua;
-    border: 1px solid $aqua;
+    font-family: $bebas;
+    background-color: $highlight;
+    border: 1px solid $highlight;
     border-radius: 16px;
     padding: 0 12px;
     height: 35px;
 
     &-active {
-      background-color: $yellow;
-      border: 1px solid $yellow;
+      background-color: $reef;
+      border: 1px solid $reef;
+      color: $white;
     }
   }
 
@@ -39,10 +40,10 @@
     width: 100%;
 
     textarea {
-      font-family: $garamond;
-      color: $dark-green;
+      font-family: $bebas;
+      color: $reef;
       font-size: 20px;
-      border: 1px solid $aqua;
+      border: 1px solid $highlight;
       padding: 12px;
       width: 90%;
       height: 85px;
@@ -50,7 +51,7 @@
   }
 
   ::placeholder {
-    color: $aqua;
+    color: $reef;
     font-size: 20px;
   }
 }

@@ -1,23 +1,32 @@
 @import './../../../styling/variables.scss';
 
 .goals {
+display: flex;
+justify-content: center;
+padding: 20px;
+margin-bottom: 30px;
+
+
   &__title {
-    color: $light-green;
-    font-size: 25px;
-    border-bottom: 1px solid $light-green;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
+    color: $reef;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $bebas;
   }
 
   &__wrapper {
+    background-color: $mist;
+    border: 1px solid $mist;
+    border-radius: 20px;
     width: 100%;
+    padding: 12px;
   }
 
   button[type='checkbox'] {
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 1px solid $aqua;
-    background: $white;
+    border: 1px solid $reef;
+    background: transparent;
     font-size: 18px;
     border-radius: 16px;
     padding: 1px 6px;
@@ -25,8 +34,8 @@
   }
 
   button[type='checkbox']:checked {
-    border: 1px solid $yellow;
-    background: $yellow;
+    border: 1px solid $teal;
+    background: $teal;
   }
 
   table {
@@ -44,28 +53,29 @@
     width: 100%;
     font-size: 16px;
     line-height: 1.25;
-    color: $light-green;
+    color: $reef;
     text-transform: capitalize;
     margin: 4px 0;
   }
 
   td {
-    width: 10%;
+    width: 8%;
 
     &:first-child {
-      width: 35%;
+      width: 37%;
+      padding-right: 6px;
     }
   }
 
   th {
     font-size: 18px;
     font-weight: 500;
-    color: $light-green;
-    width: 10%;
+    color: $reef;
+    width: 8%;
 
 
     &:first-child {
-      width: 35%;
+      width: 37%;
       text-align: left;
     }
   }

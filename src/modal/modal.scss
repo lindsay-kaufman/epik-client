@@ -17,13 +17,14 @@
     position: absolute;
     top: 50%;
     left: 30%;
-    border: 1px solid $light-green;
-    background-color: $white;
-    color: $dark-green;
-    border-radius: 8px;
+    border: 3px solid $reef;
+    background-color: $mist;
+    color: $reef;
+    border-radius: 16px;
     padding: 12px 16px;
     margin: 0 20%;
     transform: translate(-50%, -50%);
+    width: 80%;
 
     &-btn {
       position: absolute;
@@ -31,8 +32,8 @@
       top: 20px;
       border: none;
       background: none;
-      font-size: 20px;
-      color: #a9a9a9;
+      font-size: 25px;
+      color: $reef;
     }
   }
 }

@@ -101,12 +101,10 @@ export const Mood = () => {
         <textarea
           className={notesClassName}
           id={score}
-          placeholder={'Thoughts for the day...?'}
+          placeholder={'Reflections for the day...?'}
           defaultValue={notes}
           onChange={submitNote}
         />
-
-        {/* <button type="submit" className="mode__notes-submit" onClick={submitNote} disabled={score === null}>Save Note</button> */}
       </form>
     </div>
   )
